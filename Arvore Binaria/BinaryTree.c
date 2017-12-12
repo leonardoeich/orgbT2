@@ -39,15 +39,15 @@ void showTree(Tree* t)
 {
   /* Essa função imprime os elementos de forma recursiva */
 
-  printf("<"); /* notação para organizar na hora de mostrar os elementos */
+  //printf("<"); /* notação para organizar na hora de mostrar os elementos */
   if(!treeIsEmpty(t)) /* se a árvore não for vazia... */
   {
-    /* Mostra os elementos em pré-ordem */
-    printf("%d ", t->num); /* mostra a raiz */
-    showTree(t->sae); /* mostra a sae (subárvore à esquerda) */
-    showTree(t->sad); /* mostra a sad (subárvore à direita) */
+
+    printf("%d ", t->num);
+    showTree(t->sae);
+    showTree(t->sad);
   }
-  printf(">"); /* notação para organizar na hora de mostrar os elementos */
+ // printf(">");
 }
 
 /* Função que insere um dado na árvore */
@@ -56,10 +56,10 @@ void insertTree(Tree** t, int num)
   /* Essa função insere os elementos de forma recursiva */
   if(*t == NULL)
   {
-    *t = (Tree*)malloc(sizeof(Tree)); /* Aloca memória para a estrutura */
-    (*t)->sae = NULL; /* Subárvore à esquerda é NULL */
-    (*t)->sad = NULL; /* Subárvore à direita é NULL */
-    (*t)->num = num; /* Armazena a informação */
+    *t = (Tree*)malloc(sizeof(Tree));
+    (*t)->sae = NULL;
+    (*t)->sad = NULL;
+    (*t)->num = num;
   } else {
     if(num < (*t)->num) /* Se o número for menor então vai pra esquerda */
     {
@@ -89,32 +89,28 @@ int main()
 {
   Tree* t = createTree(); /* cria uma árvore */
 
-  insertTree(&t, 12); /* insere o elemento 12 na árvore */
-  insertTree(&t, 15); /* insere o elemento 15 na árvore */
-  insertTree(&t, 10); /* insere o elemento 10 na árvore */
-  insertTree(&t, 13); /* insere o elemento 13 na árvore */
+  int x = 0, i =0;
+  while(i<1000){
+    x = (rand()%1500);
+    insertTree(&t, x);
+    i ++;
+  }
 
   showTree(t); /* Mostra os elementos da árvore em pré-ordem */
 
-  if(treeIsEmpty(t)) /* Verifica se a árvore está vazia */
-    printf("\n\nArvore vazia!!\n");
-  else
-    printf("\n\nArvore NAO vazia!!\n");
 
-
-  if(isInTree(t, 15))  /* Verifica se o número 15 pertence a árvore */
-    printf("\nO numero 15 pertence a arvore!\n");
+  if(isInTree(t, 25))
+    printf("\nO numero 25 pertence a arvore!\n");
   else
-     printf("\nO numero 15 NAO pertence a arvore!\n");
+     printf("\nO numero 25 NAO pertence a arvore!\n");
 
-  if(isInTree(t, 22))  /* Verifica se o número 22 pertence a árvore */
-    printf("\nO numero 22 pertence a arvore!\n\n");
+  if(isInTree(t, 442))
+    printf("\nO numero 442 pertence a arvore!\n\n");
   else
-    printf("\nO numero 22 NAO pertence a arvore!\n\n");
+    printf("\nO numero 442 NAO pertence a arvore!\n\n");
 
 
   free(t); /* Libera a memória alocada pela estrutura árvore */
 
   return 0;
 }
-
